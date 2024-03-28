@@ -1,0 +1,120 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Student Average Score Calculator</title>  
+<style>  
+body {  
+    font-family: Arial, sans-serif;  
+    margin: 0;  
+    padding: 20px;  
+    background-color: #f4f4f4;  
+}  
+  
+h1 {  
+    text-align: center;  
+}  
+  
+.container {  
+    max-width: 400px;  
+    margin: 0 auto;  
+    background-color: #fff;  
+    padding: 20px;  
+    border-radius: 5px;  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+}  
+  
+.result {  
+    margin-top: 20px;  
+    padding: 10px;  
+    background-color: #e7f3fe;  
+    border-radius: 5px;  
+}  
+  
+button {  
+    display: block;  
+    margin: 20px auto;  
+    padding: 10px 20px;  
+    font-size: 16px;  
+    color: #fff;  
+    background-color: #007BFF;  
+    border: none;  
+    border-radius: 5px;  
+    cursor: pointer;  
+}  
+  
+button:hover {  
+    background-color: #0056b3;  
+}  
+</style>  
+<script>  
+function calculateAverage() {  
+    // Ask the user if they need help  
+    var needsHelp = confirm("Do you need help calculating the average score?");  
+    if (!needsHelp) {  
+        alert("If you don't need help, please close this window or proceed with another action.");  
+        return;  
+    }  
+  
+    // Get the user's full name  
+    var fullName = prompt("Please enter your full name:");  
+    if (!fullName) {  
+        alert("Please enter your full name!");  
+        return;  
+    }  
+  
+    // Define a function to validate the score  
+    function validateScore(score) {  
+        var scorePattern = /^([0-9]+(\.[0-9]+)?)$/; // Regular expression to match positive numbers or decimals  
+        return scorePattern.test(score);  
+    }  
+  
+    // Get and validate the scores for four units  
+    var scores = [];  
+    for (var i = 1; i <= 4; i++) {  
+        var inputValid = false;  
+        var scoreInput;  
+        while (!inputValid) {  
+            scoreInput = prompt("Please enter the score for unit " + i + " (0-100):");  
+            if (!scoreInput) {  
+                alert("Please enter a score, it cannot be empty!");  
+                continue;  
+            }  
+            var score = parseFloat(scoreInput);  
+            if (isNaN(score)) {  
+                alert("Invalid score format, please enter a valid number!");  
+                continue;  
+            }  
+            if (score < 0 || score > 100) {  
+                alert("The score must be between 0 and 100!");  
+                continue;  
+            }  
+            inputValid = true;  
+        }  
+        scores.push(score);  
+    }  
+  
+    // Calculate the total score and average score  
+    var totalScore = scores.reduce((sum, score) => sum + score, 0);  
+    var averageScore = totalScore / scores.length;  
+  
+    // Display the result  
+    alert("The total and average scores are as follows:\n" +  
+          "Name: " + fullName + "\n" +  
+          "Total Score: " + totalScore.toFixed(2) + "\n" +  
+          "Average Score: " + averageScore.toFixed(2) + "\n\n" +  
+          "Thank you for using this program!");  
+}  
+</script>  
+</head>  
+<body>  
+<div class="container">  
+    <h1>Student Average Score Calculator</h1>  
+    <button onclick="calculateAverage()">Calculate Average Score</button>  
+    <div id="result" class="result" hidden>  
+        <!-- The result will be displayed here using JavaScript -->  
+    </div>  
+</div>  
+</body>  
+</html>

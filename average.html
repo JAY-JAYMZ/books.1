@@ -1,0 +1,40 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Student Average Score Calculator</title>  
+<script>  
+function calculateAverage() {  
+  var fullName = prompt("请输入您的全名:");  
+  var needsHelp = confirm("您需要帮助来计算平均分吗?");  
+    
+  if (!needsHelp) {  
+    alert("如果您不需要帮助，请直接关闭此窗口。");  
+    return;  
+  }  
+    
+  var score1 = parseFloat(prompt("请输入单元1的成绩:"));  
+  var score2 = parseFloat(prompt("请输入单元2的成绩:"));  
+  var score3 = parseFloat(prompt("请输入单元3的成绩:"));  
+  var score4 = parseFloat(prompt("请输入单元4的成绩:"));  
+    
+  if (isNaN(score1) || isNaN(score2) || isNaN(score3) || isNaN(score4)) {  
+    alert("请输入有效的成绩！");  
+    return;  
+  }  
+    
+  var totalScore = score1 + score2 + score3 + score4;  
+  var averageScore = totalScore / 4;  
+    
+  alert("总分和平均分如下：\n" +  
+        "总分: " + totalScore + "\n" +  
+        "平均分: " + averageScore.toFixed(2) + "\n\n" +  
+        "感谢您使用该程序。");  
+}  
+</script>  
+</head>  
+<body>  
+<button onclick="calculateAverage()">计算平均分</button>  
+</body>  
+</html>
